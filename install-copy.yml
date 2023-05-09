@@ -1,0 +1,17 @@
+---
+- name: install play-book
+  hosts: all
+  become: yes
+  tasks:
+    - name: install httpd server soft
+      yum:
+        name: httpd
+        state: latest
+    - name: start httpd server
+      service:
+        name: httpd
+        state: started
+    - name: copy index file to loaction
+      copy:
+        src: /var/lib/jenkins/workspace/deploy-from-ansible-playbook-angular-app-sandya/dist/class-4-30-angular-app/
+        dest: /var/www/html/

@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM') {
+            steps {
+                git 'https://github.com/jilu407/class-4-30-angular-app.git'
+            }
+        }
+        stage('install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'ansiblePlaybook become: true, credentialsId: '1fe4505c-541c-422f-824d-5e1e166c88e9', inventory: 'host.inv', playbook: 'install-copy.yml''
+            }
+        }
+    }
+}
