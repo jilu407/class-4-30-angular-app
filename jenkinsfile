@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                ansiblePlaybook become: true, credentialsId: '1fe4505c-541c-422f-824d-5e1e166c88e9', inventory: 'host.inv', playbook: 'install-copy.yml'
+                ansiblePlaybook become: true, credentialsId: '1fe4505c-541c-422f-824d-5e1e166c88e9',disableHostKeyChecking: true, inventory: 'host.inv', playbook: 'install-copy.yml'
             }
         }
     }
